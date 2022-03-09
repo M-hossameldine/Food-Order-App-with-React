@@ -1,5 +1,6 @@
 import React from 'react';
 import HeaderCartButton from './HeaderCartButton';
+
 import coverImg from '../../../assets/meals.jpg';
 import styles from './Header.module.css';
 
@@ -8,7 +9,7 @@ const Header = (props) => {
     <>
       <header className={styles.header}>
         <h1>ReactMeals</h1>
-        <HeaderCartButton />
+        <HeaderCartButton onClick={props.onShowCart} />
       </header>
       <div className={styles['main-image']}>
         <img src={coverImg} alt='table full of delicious food!' />
