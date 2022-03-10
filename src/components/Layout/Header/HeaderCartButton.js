@@ -29,15 +29,15 @@ const HeaderCartButton = (props) => {
     };
   }, [items]);
 
-  const btnClasses = `${styles.button} ${btnIsHighlighted ? styles.bump : ''}`;
+  const btnClasses = `${styles.badge} ${btnIsHighlighted ? styles.bump : ''}`;
 
   return (
-    <button className={btnClasses} onClick={props.onClick}>
+    <button className={styles.button} onClick={props.onClick}>
       <span className={styles.icon}>
         <CartIcon />
       </span>
       <span> Your Cart </span>
-      <span className={styles.badge}> {numberOfCartItems} </span>
+      <span className={btnClasses}> {numberOfCartItems} </span>
     </button>
   );
 };
