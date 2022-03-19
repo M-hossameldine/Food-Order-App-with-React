@@ -30,14 +30,10 @@ const DUMMY_MEALS = [
     price: 18.99,
   },
 ];
-const transformedMeals = (loadedMeals) => {
-  let meals = [];
-
-  return meals;
-};
 
 const AvailableMeals = () => {
   const [meals, setMeals] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   const mealList = meals.map((meal) => (
     <MealItem
@@ -70,10 +66,19 @@ const AvailableMeals = () => {
       }
 
       setMeals(loadedMeals);
+      setIsLoading(false);
     };
 
     fetchMeals();
   }, []);
+
+  if (isLoading) {
+    return (
+      <section className={styles.mealsLoading}>
+        <p>Loading ...</p>
+      </section>
+    );
+  }
 
   return (
     <section className={styles.meals}>
