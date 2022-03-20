@@ -1,7 +1,7 @@
 import { useReducer } from 'react';
 import CartContext from './cart-context';
 
-const defautlCartState = {
+const defaultCartState = {
   items: [],
   totalAmount: 0,
 };
@@ -63,20 +63,28 @@ const cartReducer = (state, action) => {
     };
   }
 
-  return defautlCartState;
+  if (action.type === 'CLEAR') {
+    return defaultCartState;
+  }
+  return defaultCartState;
 };
 
 const CartProvider = (props) => {
   const [cartState, dispatchCartAction] = useReducer(
     cartReducer,
-    defautlCartState
+    defaultCartState
   );
 
   const addItemHandler = (item) => {
     dispatchCartAction({ type: 'ADD', item });
   };
+
   const removeItemHandler = (id) => {
     dispatchCartAction({ type: 'REMOVE', id });
+  };
+
+  const clearCartItemsHandler = () => {
+    dispatchCartAction({ type: 'CLEAR' });
   };
 
   const cartContext = {
@@ -84,6 +92,7 @@ const CartProvider = (props) => {
     totalAmount: cartState.totalAmount,
     addItem: addItemHandler,
     removeItem: removeItemHandler,
+    clearCart: clearCartItemsHandler,
   };
 
   return (
